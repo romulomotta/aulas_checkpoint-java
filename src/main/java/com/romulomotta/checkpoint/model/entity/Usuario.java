@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Data
@@ -19,8 +20,10 @@ public class Usuario {
     private Integer id;
 
     @Column(unique = true, name = "login")
+    @NotEmpty(message = "Campo de Usuário precisa ser preenchido.")
     private String username;
 
     @Column(name = "senha")
+    @NotEmpty(message = "Campo de Senha precisa ser preenchido.")
     private String password;
 }
