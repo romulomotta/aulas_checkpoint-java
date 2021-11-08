@@ -3,7 +3,15 @@ package com.romulomotta.checkpoint.rest;
 import com.romulomotta.checkpoint.model.entity.Anime;
 import com.romulomotta.checkpoint.model.repository.AnimeRepository;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
@@ -22,6 +30,11 @@ public class AnimeController {
     @GetMapping
     public List<Anime> getAll() {
         return repository.findAll();
+    }
+
+    @GetMapping("last")
+    public List<Anime> getLastTwo() {
+        return repository.find2LastAnime();
     }
 
     @PostMapping
